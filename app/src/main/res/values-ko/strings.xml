@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">빠른 설정</string>
+    <string name="tile_label">자동 백라이트 밝기</string>
+    <string name="service_active">켜기</string>
+    <string name="service_inactive">끄기</string>
+    <string name="req_grant">권한이 필요합니다.</string>
+    <string name="ok">OK</string>
+</resources>

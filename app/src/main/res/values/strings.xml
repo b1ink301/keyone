@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Quick Setting</string>
+    <string name="tile_label">Auto keyboard brightness</string>
+    <string name="service_active">On</string>
+    <string name="service_inactive">Off</string>
+    <string name="adb_grant" translatable="false"># adb shell pm grant kr.b1ink.keyone android.permission.WRITE_SECURE_SETTINGS</string>
+    <string name="req_grant">Permission is required.</string>
+    <string name="ok">OK</string>
+</resources>
