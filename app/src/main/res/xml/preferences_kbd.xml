@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen
+        xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory android:title="@string/keyboard_bightness_settings_title"
+                        android:key="display_keyboard_brightness_category"
+                        app:iconSpaceReserved="false"
+    >
+        <SwitchPreferenceCompat android:persistent="true"
+                                android:title="@string/display_keyboard_auto_brightness_title"
+                                android:key="display_keyboard_auto_brightness"
+                                android:summary="@string/display_keyboard_auto_brightness_summary"
+                                app:iconSpaceReserved="false"
+        />
+        <SeekBarPreference android:max="110"
+                           android:min="10"
+                           android:defaultValue="10"
+                           android:title="@string/night_display_keyboard_brightness_title"
+                           android:key="night_display_keyboard_brightness"
+                           android:dependency="display_keyboard_auto_brightness"
+                           app:iconSpaceReserved="false"
+                           tools:ignore="UnusedAttribute"
+        />
+        <SeekBarPreference android:max="110"
+                           android:min="10"
+                           android:defaultValue="10"
+                           android:title="@string/display_navi_brightness_title"
+                           android:key="night_display_navi_brightness"
+                           android:dependency="display_keyboard_auto_brightness"
+                           app:iconSpaceReserved="false"
+                           tools:ignore="UnusedAttribute"
+        />
+    </PreferenceCategory>
+</androidx.preference.PreferenceScreen>

@@ -6,4 +6,9 @@
     <string name="adb_grant" translatable="false"># adb shell pm grant kr.b1ink.keyone android.permission.WRITE_SECURE_SETTINGS</string>
     <string name="req_grant">Permission is required.</string>
     <string name="ok">OK</string>
+    <string name="keyboard_bightness_settings_title">Keyboard bightness settings</string>
+    <string name="display_keyboard_auto_brightness_title">display_keyboard_auto_brightness_title</string>
+    <string name="display_keyboard_auto_brightness_summary">display_keyboard_auto_brightness_summary</string>
+    <string name="night_display_keyboard_brightness_title">night_display_keyboard_brightness_title</string>
+    <string name="display_navi_brightness_title">display_navi_brightness_title</string>
 </resources>

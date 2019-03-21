@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
             Manifest.permission.WRITE_SECURE_SETTINGS
         )
 
-        if( permissionCheck== PackageManager.PERMISSION_GRANTED ) {
+        if( permissionCheck==PackageManager.PERMISSION_GRANTED ) {
 
             text.text = getString(R.string.ok)
 //            val builder = AlertDialog.Builder(this)
@@ -26,6 +26,9 @@ class MainActivity : AppCompatActivity() {
 ////                    finish()
 //                }
 //            builder.create().show()
+
+//            val settingFragment = SettingFragment()
+//            supportFragmentManager.beginTransaction().replace(R.id.content_frame, settingFragment).commit()
         }
     }
 }

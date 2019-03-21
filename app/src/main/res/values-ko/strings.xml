@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">빠른 설정</string>
-    <string name="tile_label">자동 백라이트 밝기</string>
+    <string name="tile_label">자동 키보드 밝기</string>
     <string name="service_active">켜기</string>
     <string name="service_inactive">끄기</string>
     <string name="req_grant">권한이 필요합니다.</string>
-    <string name="ok">OK</string>
+    <string name="ok">권한 설정 완료되었습니다.</string>
+    <string name="keyboard_bightness_settings_title">Keyboard bightness settings</string>
+    <string name="display_keyboard_auto_brightness_title">display_keyboard_auto_brightness_title</string>
+    <string name="display_keyboard_auto_brightness_summary">display_keyboard_auto_brightness_summary</string>
+    <string name="night_display_keyboard_brightness_title">night_display_keyboard_brightness_title</string>
+    <string name="display_navi_brightness_title">display_navi_brightness_title</string>
 </resources>
