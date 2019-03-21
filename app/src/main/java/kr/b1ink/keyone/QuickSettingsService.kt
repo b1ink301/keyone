@@ -21,6 +21,7 @@ import android.provider.Settings
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 import android.util.Log
+import androidx.preference.PreferenceManager
 
 /**
  * system = night_display_navi_brightness
@@ -48,6 +49,12 @@ class QuickSettingsService : TileService() {
 //
 //            prefs.edit().putBoolean(SERVICE_STATUS_FLAG, isActive).apply()
 
+//            return if( PreferenceManager.getDefaultSharedPreferences(applicationContext).getBoolean("display_keyboard_auto_brightness", false) ) {
+//                true
+//            } else {
+//                Settings.Global.getInt(applicationContext.contentResolver, "auto_keyboard_brightness") > 0
+//            }
+
             return Settings.Global.getInt(applicationContext.contentResolver, "auto_keyboard_brightness") > 0
         }
 
@@ -65,6 +72,15 @@ class QuickSettingsService : TileService() {
      */
     override fun onStartListening() {
         Log.d(TAG, "Start listening")
+        val tile = this.qsTile
+        val isActive = serviceStatus
+        val newState: Int = if( isActive ) {
+                Tile.STATE_INACTIVE
+            } else {
+                Tile.STATE_INACTIVE
+            }
+        tile.state = newState
+        tile.updateTile()
     }
 
     /**
@@ -148,6 +164,26 @@ class QuickSettingsService : TileService() {
         try{
 //            val autoKeyboardKrightness = Settings.Global.getInt(applicationContext.contentResolver, "auto_keyboard_brightness")
 //            Log.d(TAG, "#1 autoKeyboardKrightness = $autoKeyboardKrightness")
+
+//            if( PreferenceManager.getDefaultSharedPreferences(applicationContext).getBoolean("display_keyboard_auto_brightness", false) ) {
+//                Settings.Global.putInt(applicationContext.contentResolver, "auto_keyboard_brightness", 0)
+//                if( isActive ) {
+//                    val night_display_keyboard_brightness = PreferenceManager.getDefaultSharedPreferences(applicationContext).getInt("night_display_keyboard_brightness", 10)
+//                    val night_display_navi_brightness = PreferenceManager.getDefaultSharedPreferences(applicationContext).getInt("night_display_navi_brightness", 10)
+//
+////                    Settings.System.putInt(applicationContext.contentResolver, "night_display_navi_brightness", night_display_navi_brightness) // 동작 안함
+//                    Settings.Global.putInt(applicationContext.contentResolver, "night_mode_keyboard_brightness", night_display_keyboard_brightness) // 동작 안함
+//                } else {
+////                    Settings.System.putInt(applicationContext.contentResolver, "night_display_navi_brightness", 0)
+//                    Settings.Global.putInt(applicationContext.contentResolver, "night_mode_keyboard_brightness", 0)
+//                }
+//            } else {
+//                if( isActive ) {
+//                    Settings.Global.putInt(applicationContext.contentResolver, "auto_keyboard_brightness", 0)
+//                } else {
+//                    Settings.Global.putInt(applicationContext.contentResolver, "auto_keyboard_brightness", 1)
+//                }
+//            }
 
             if( isActive ) {
                 Settings.Global.putInt(applicationContext.contentResolver, "auto_keyboard_brightness", 0)
