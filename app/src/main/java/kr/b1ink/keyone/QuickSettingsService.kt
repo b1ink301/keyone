@@ -20,7 +20,6 @@ import android.os.Build
 import android.provider.Settings
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
-import android.util.Log
 
 /**
  * system = night_display_navi_brightness
@@ -35,24 +34,22 @@ class QuickSettingsService : TileService() {
     // Access storage to see how many times the tile
     // has been tapped.
     private val serviceStatus: Boolean
-        get() {
-            return Settings.Global.getInt(applicationContext.contentResolver, "auto_keyboard_brightness") > 0
-        }
+        get() = Settings.Global.getInt(
+            applicationContext.contentResolver,
+            "auto_keyboard_brightness"
+        ) > 0
 
     /**
      * Called when the tile is added to the Quick Settings.
      * @return TileService constant indicating tile state
      */
     override fun onTileAdded() {
-        Log.d(TAG, "Tile added")
     }
 
     /**
      * Called when this tile begins listening for events.
      */
     override fun onStartListening() {
-        Log.d(TAG, "Start listening")
-
         val tile = this.qsTile
         val isActive = serviceStatus
         val newState: Int = if( isActive ) {
@@ -68,7 +65,6 @@ class QuickSettingsService : TileService() {
      * Called when the user taps the tile.
      */
     override fun onClick() {
-        Log.d(TAG, "onClick")
         updateTile()
     }
 
@@ -76,14 +72,12 @@ class QuickSettingsService : TileService() {
      * Called when this tile moves out of the listening state.
      */
     override fun onStopListening() {
-        Log.d(TAG, "onStopListening")
     }
 
     /**
      * Called when the user removes this tile from Quick Settings.
      */
     override fun onTileRemoved() {
-        Log.d(TAG, "onTileRemoved")
     }
 
     // Changes the appearance of the tile.
@@ -92,32 +86,26 @@ class QuickSettingsService : TileService() {
         val tile = this.qsTile
         val isActive = serviceStatus
 
-        val newState: Int
-
         setAutoKeyboardBrightness(isActive)
 
-        // Change the tile to match the service status.
-        newState = if (!isActive) {
+        // Change the UI of the tile.
+        tile.state = if (!isActive) {
             Tile.STATE_ACTIVE
-
         } else {
             Tile.STATE_INACTIVE
         }
-
-        // Change the UI of the tile.
-        tile.state = newState
 
         // Need to call updateTile for the tile to pick up changes.
         tile.updateTile()
     }
 
     private fun setAutoKeyboardBrightness(isActive:Boolean) {
-        try{
-            if( isActive ) {
-                Settings.Global.putInt(applicationContext.contentResolver, "auto_keyboard_brightness", 0)
-            } else {
-                Settings.Global.putInt(applicationContext.contentResolver, "auto_keyboard_brightness", 1)
-            }
+        try {
+            Settings.Global.putInt(
+                applicationContext.contentResolver,
+                "auto_keyboard_brightness",
+                if (isActive) 0 else 1
+            )
         } catch (e:Settings.SettingNotFoundException) {
             e.printStackTrace()
         }
